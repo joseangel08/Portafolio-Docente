@@ -1,0 +1,12 @@
+.mayus{
+    text-transform: uppercase;
+}
+
+.desactivado{
+    background: crimson;
+    color:ivory;
+}
+
+.margen-contenido{
+    padding-left: 150px;
+}

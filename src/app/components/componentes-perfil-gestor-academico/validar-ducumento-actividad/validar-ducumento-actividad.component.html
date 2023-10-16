@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="form-wizard">
+    <div class="div-titulo sombra">
+      <h3> <strong>Validar Documentacion - {{documentacion.nombre}}</strong></h3>
+    </div>
+    <div class="form-group">
+      <section>
+        <fieldset>
+          <div #viewer class="webviewer"></div>
+        </fieldset>       
+        <div class="form-wizard-buttons" >
+          <button type="button" class="btn btn-primary" style="margin-left: 1%;" (click)="regresar()">Regresar</button>
+            <button *ngIf="documentacion.estado=='No Validado'" type="submit" class="btn btn-success" style="margin-left: 1%;" (click)="validarDocumento()" data-toggle="modal" data-target="#modalValidarDocAct">Validar</button>
+            <button *ngIf="documentacion.estado=='No Validado'" type="submit" class="btn btn-danger" style="margin-left: 1%;" (click)="noValidarDocumento()" data-toggle="modal" data-target="#modalNoValidarDocAct">No Validar</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<app-modal-validar-doc-act></app-modal-validar-doc-act>
+<app-modal-no-validar-doc-act></app-modal-no-validar-doc-act>

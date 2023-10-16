@@ -1,0 +1,37 @@
+
+<div class="modal fade" id="modalVisualizarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:150%">
+        <div class="modal-header modal-background">
+          <h5 class="titulo" id="exampleModalLabel">Visualizar Rol</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="form-wizard">    
+                <form class="form-rol" #formRol="ngForm">
+                  <h3>Datos Rol</h3>     
+                  <div class="form-group" style="text-align: left">
+                      <label>Nombre Rol: </label>
+                    <input type="text" id="nombre_rol" name="nombre_rol" class="form-control" placeholder="Nombre" [(ngModel)]="this.servicio.rolSelect.nombre_rol" readonly=”readonly”>
+                  </div>
+                  <div class="form-group" style="text-align: left">
+                      <label>Estado:</label>
+                      <input type="text" id="estado" name="estado" class="form-control" placeholder="Estado" [(ngModel)]="this.servicio.rolSelect.estado" readonly=”readonly”>
+                    </div>
+                  <div class="form-wizard-buttons">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+                  
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  

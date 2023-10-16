@@ -1,0 +1,82 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="div-titulo sombra">
+    <h3 style="text-align-last: center">Administración Docentes</h3>
+  </div>
+    <div class="row">
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+            </span>
+            <input type="text" [(ngModel)]="buscar" name="buscar" class="form-control" placeholder="Buscar">
+          </div>
+          <div class="input-group">
+              <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalCrearUsuarios">Nuevo Docente</button>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cedula/Pasaporte</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Carrera</th>
+                <th scope="col">Estado</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+      
+            <tbody>
+              <tr *ngFor="let usuario of usuarios|buscarUsuario:buscar; index as i">
+                <th *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'" scope="row">{{i+1}}</th>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.cedula}}{{usuario.pasaporte}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.nombre}} {{usuario.apellido}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.correo}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.rol}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.usuario}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.carrera}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">{{usuario.estado}}</td>
+                <th *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado" scope="row">{{i+1}}</th>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.cedula}}{{usuario.pasaporte}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.nombre}} {{usuario.apellido}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.correo}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.rol}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.usuario}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.carrera}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">{{usuario.estado}}</td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarUsuarios" (click)="visualizarUsuario(usuario)">Visualizar</button>
+                </td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">
+                  <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarUsuarios" (click)="modificarUsuario(usuario)">Modificar</button>
+                </td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Activo'">
+                  <button class="btn btn-danger" (click)="desactivarUsuario(usuario)">Inactivar</button>
+                </td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">
+                  <button class="btn btn-info" disabled="true">Visualizar</button>
+                </td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">
+                  <button class="btn btn-success" disabled="true">Modificar</button>
+                </td>
+                <td *ngIf="usuario.rol!='Administrador' && usuario.estado=='Inactivo'" class="desactivado">
+                  <button class="btn btn-warning" (click)="activarUsuario(usuario)">Activar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+      </div>
+</div>
+<app-modal-crear-usuario></app-modal-crear-usuario>
+<app-modal-modificar-usuarios></app-modal-modificar-usuarios>
+<app-modal-visualizar-usuarios></app-modal-visualizar-usuarios>

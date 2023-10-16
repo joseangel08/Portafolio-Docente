@@ -1,0 +1,66 @@
+<div class="contenedor2">
+    <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+  <div class="div-titulo sombra">
+    <h3 style="text-align-last: center"><strong>Administracion de Roles del Sistema</strong></h3>
+  </div>
+  <div class="box">
+    <div class="table-responsive-md">
+      <div class="input-group">
+        <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalCrearRol">Nuevo Rol</button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+        </span>
+        <input type="text" [(ngModel)]="buscar"  name="buscar" class="form-control" placeholder="Buscar">
+      </div>
+      <div id="divTabla">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width: 40%;">Nombre de Rol</th>
+              <th scope="col" style="width: 40%;">Estado</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let rol of roles|buscarRol:buscar; index as i">
+              <td *ngIf="rol.estado=='Activo' && rol.nombre!= 'Administrador'">{{rol.nombre_rol}}</td>
+              <td *ngIf="rol.estado=='Activo' && rol.nombre!= 'Administrador'">{{rol.estado}}</td>
+              <th scope="row" *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">{{i+1}}</th>
+              <td *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">{{rol.nombre_rol}}</td>
+              <td *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">{{rol.estado}}</td>
+              <td *ngIf="rol.estado=='Activo' && rol.nombre!= 'Administrador'">
+                <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarRol" (click)="visualizarRol(rol)">Visualizar</button>
+              </td>
+              <td *ngIf="rol.estado=='Activo' && rol.nombre!= 'Administrador'">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarRol" (click)="modificarRol(rol)">Modificar</button>
+              </td>
+              <td *ngIf="rol.estado=='Activo' && rol.nombre!= 'Administrador'">
+                <button class="btn btn-danger" (click)="desactivarRol(rol)">Inactivar</button>
+              </td>          
+              <td *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">
+                <button class="btn btn-info" disabled="true">Visualizar</button>
+              </td>
+              <td *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">
+                <button class="btn btn-success" disabled="true">Modificar</button>
+              </td>
+              <td *ngIf="rol.estado=='Inactivo' && rol.nombre!= 'Administrador'" class="desactivado">
+                <button class="btn btn-warning" (click)="activarRol(rol)">Activar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-crear-rol></app-modal-crear-rol>
+<app-modal-visualizar-rol></app-modal-visualizar-rol>
+<app-modal-modificar-rol></app-modal-modificar-rol>

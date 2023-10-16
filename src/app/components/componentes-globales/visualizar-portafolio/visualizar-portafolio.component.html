@@ -1,0 +1,42 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+  <div class="div-titulo sombra">
+    <h3 style="text-align-last: center"><strong>Visualizar Portafolios Docentes</strong></h3>
+  </div>
+  <div class="box">
+    <div class="table-responsive-md">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+        </span>
+        <input type="text" [(ngModel)]="buscar" name="buscar" class="form-control" placeholder="Buscar">
+      </div>
+      <div class="divTabla">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width: 40%;">Nombre de Docente</th>
+              <th scope="col" style="width: 40%;">Periodo Académico</th>
+              <th scope="col">Fecha Creación</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let portafolio of portafolios|buscarPortafolioDocente:buscar; index as i">
+              <td>{{portafolio.nombre}} {{portafolio.apellido}}</td>
+              <td>{{portafolio.descripcion_periodo}}</td>
+              <td>{{portafolio.fecha_creacion}}</td>
+              <td>
+                <button class="btn btn-success" (click)="administrarPortafolio(portafolio)">Visualizar</button>
+              </td>           
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

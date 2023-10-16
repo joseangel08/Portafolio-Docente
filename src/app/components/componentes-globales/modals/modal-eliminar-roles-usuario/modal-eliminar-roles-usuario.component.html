@@ -1,0 +1,47 @@
+<div class="modal fade" id="modalEliminarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:150%">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">ELIMINAR ROL - {{periodo.descripcion}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">            
+          <div class="form-wizard"> 
+            <h3>{{this.servicio.usuarioAsignarRol.nombre}} {{this.servicio.usuarioAsignarRol.apellido}}</h3>
+         <!---   <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+                </span>
+                <input type="text" [(ngModel)]="buscar"  name="buscar" class="form-control" placeholder="Buscar">
+              </div>-->  
+              <fieldset class="p-3 mt-4">
+                <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Roles Asignados</strong>&nbsp;&nbsp;</legend>
+                  <table class="table table-bordered">
+                    <thead style="background: #149b48;">
+                      <tr>
+                        <th scope="col" style="color: white; width: 70%;">Período Académico</th>
+                        <th scope="col" style="color: white;">Nombre de Rol</th>
+                        <th scope="col" style="color: white;"></th>
+                        
+                      </tr>
+                    </thead>          
+                    <tbody>
+                      <tr *ngFor="let rol of this.servicio.rolesUsuarioAsignar|buscarRol:buscar; index as i">
+                        <td>{{rol.periodo_academico}}</td>  
+                        <td>{{rol.rol}}</td>
+                        <td style="width: 25%; text-align: center;">
+                          <button class="btn btn-danger" data-dismiss="modal" (click)="eliminarRol(rol)">Eliminar</button>
+                        </td>      
+                      </tr>
+                    </tbody>
+                  </table>
+              </fieldset>
+          </div>
+        </div>
+      </div>        
+    </div>
+  </div><
+</div>

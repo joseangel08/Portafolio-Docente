@@ -1,0 +1,18 @@
+<nav class="vav-bar navbar navbar-expand-lg" style="position: fixed; width: 100%;" *ngFor="let user of usuario">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="botonesMenuAlto">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: blanchedalmond;" href="/perfil">Datos Personales<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <div>
+
+    </div>
+    <a class="nav-link box" data-toggle="modal" data-target="#modalSeleccionarPeriodo" style="color: blanchedalmond;">{{periodo.descripcion}}</a>
+      <a href="#" class="btn btn-outline-danger my-2 my-sm-0" style="color: blanchedalmond;" (click)="salir()">Salir</a>
+  </div>
+</nav>
+<app-modal-seleccionar-periodo-academico></app-modal-seleccionar-periodo-academico>

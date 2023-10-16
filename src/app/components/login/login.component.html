@@ -1,0 +1,27 @@
+<form #formLogin="ngForm" (ngSubmit)="login(formLogin)">
+<div class="login-page">
+    <div class="form">
+      <input type="email" #usuario="ngModel" placeholder="Usuario" name="usuario" required id="usuario" [(ngModel)]="usuarioLogin.usuario" email/>
+      <div class="form-row" style="text-align: left">
+        <div *ngIf="usuario.touched && !usuario.valid"  class="alert alert-danger">
+          <div *ngIf="usuario.errors.required">Ingrese usuario. El usuario es requerido.</div>
+          <div *ngIf="usuario.errors.email">Debe ingresar un correo válido. Ejm (email@domain.com)</div>
+        </div>
+      </div>
+      <div class="messageError" role="alert" *ngIf="tamUs>0&&tamUs<=4">
+        Debe ser mayor a 4 caracteres
+      </div>
+      <input type="password" #clave="ngModel" placeholder="Clave" required name="clave" id="clave" [(ngModel)]="usuarioLogin.clave" minlength="4"/>
+      <div class="form-row" style="text-align: left">
+        <div *ngIf="clave.touched && !clave.valid"  class="alert alert-danger">
+          <div *ngIf="clave.errors.required">Ingrese su clave. Clave es requerida.</div>
+          <div *ngIf="clave.errors.minlength"> Por lo menos 4 caracteres.</div>
+        </div>
+      </div>
+      <div class="messageError" role="alert" *ngIf="numErr>=3">
+        <a href="http://localhost/PortafolioDocente/src/app/services/recover/recover.php">Recuperar Clave</a>
+      </div>
+      <button type="submit">Ingresar</button>
+    </div>
+  </div>
+</form>

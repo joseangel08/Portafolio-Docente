@@ -1,0 +1,20 @@
+{
+    // CONFIGURACIÖN PARA PHP
+//
+// PHP
+// Señala al ejecutable PHP.
+"php.validate.executablePath": "D:\\Desarrollador\\xampp\\php\\php.exe",
+//
+// Indica si linter se ejecuta al guardar o al escribir.
+"php.validate.run": "onType",
+//
+// PHP Intellisense
+// The path to a PHP 7+ executable.
+"php.executablePath": "D:\\Desarrollador\\xampp\\php\\php.exe",
+"editor.fontSize": 12,
+"workbench.tree.indent": 4,
+"workbench.editor.labelFormat": "short",
+"workbench.editor.tabSizing": "shrink",
+"window.zoomLevel": 0,
+"workbench.colorTheme": "Monokai"
+}

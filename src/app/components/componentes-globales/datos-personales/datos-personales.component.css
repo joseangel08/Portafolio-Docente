@@ -1,0 +1,16 @@
+h1{
+    font-size: 14px;
+  }
+
+.container{
+  position: fixed; 
+  z-index: 100%;
+  margin-left: 350px;
+  padding-top: 50px;
+}
+
+#div2{
+  width: 100%;    
+  justify-content: center;
+  align-items: center;
+}

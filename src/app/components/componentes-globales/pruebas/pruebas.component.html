@@ -1,0 +1,20 @@
+<input type="text" id="nombres" name="nombres" placeholder="Nombres" class="form-control" disabled="" value="Jose Angel">
+<div id="divBtnModificar">
+  <button type="button" class="btn btn-success" (click)="modificarDatos()">Modificar</button>
+</div>
+<div id="divModDatos">
+  <button type="button" class="btn btn-danger" (click)="cancelarMod()">Cancelar</button>
+  <button type="submit" class="btn btn-success">Guardar</button>
+</div> 
+<button type="button" class="btn btn-primary" (click)="crearCompDoc()">Modificar</button>
+<h2>Se van a cargar el componente dinamico:</h2>
+<ng-template appDynamicHost>
+  
+</ng-template> 
+
+<!--<div>
+  <input (change)="getFile($event)" type="file">
+</div>
+<div>
+  <button type="button" (click)="sendFile()">Subiendo</button>
+</div>-->

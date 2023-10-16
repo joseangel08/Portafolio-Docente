@@ -1,0 +1,29 @@
+.mayus{
+    text-transform: uppercase;
+}
+
+.desactivado{
+    background: crimson;
+    color:ivory;
+}
+
+.margen-contenido{
+    padding-left: 150px;
+}
+
+
+table{
+    table-layout: fixed;
+    width: 300px;
+}
+
+th, td {
+    width: 80px;
+    word-wrap: break-word;
+}
+
+.thtdMaximo {
+    width: 250px;
+    word-wrap: break-word;
+}
+  

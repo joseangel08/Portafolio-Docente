@@ -1,0 +1,70 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+  <div class="box">
+    <div class="div-titulo sombra">
+      <h3 style="text-align-last: center">Administracion de Carreras del Sistema</h3>
+    </div>
+    <div class="table-responsive-md">
+      <div class="input-group">
+        <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalCrearCarrera">Nueva Carrera</button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+        </span>
+        <input type="text" [(ngModel)]="buscar"  name="buscar" class="form-control" placeholder="Buscar">
+      </div>
+      <div id="divTabla">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nombre de Carrera</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Estado</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let carrera of carreras|buscarCarrera:buscar; index as i">
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">{{carrera.nombre}}</td>
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">{{carrera.descripcion}}</td>
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">{{carrera.estado}}</td>
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">{{carrera.nombre}}</td>
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">{{carrera.descripcion}}</td>
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">{{carrera.estado}}</td>
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">
+                <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarCarrera" (click)="visualizarCarrera(carrera)">Visualizar</button>
+              </td>
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarCarrera" (click)="modificarCarrera(carrera)">Modificar</button>
+              </td>
+              <td *ngIf="carrera.estado=='Activo' && carrera.nombre!='Admin'">
+                <button class="btn btn-danger" (click)="desactivarCarrera(carrera)">Inactivar</button>
+              </td>          
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">
+                <button class="btn btn-info" disabled="true">Visualizar</button>
+              </td>
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">
+                <button class="btn btn-success" disabled="true">Modificar</button>
+              </td>
+              <td *ngIf="carrera.estado=='Inactivo' && carrera.nombre!='Admin'" class="desactivado">
+                <button class="btn btn-warning" (click)="activarCarrera(carrera)">Activar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container margen-contenido">
+  
+<app-modal-crear-carrera></app-modal-crear-carrera>
+<app-modal-visualizar-carrera></app-modal-visualizar-carrera>
+<app-modal-modificar-carrera></app-modal-modificar-carrera>

@@ -1,0 +1,68 @@
+<div class="modal fade" id="modalVisualizarActDocUsuario" tabindex="-1" role="dialog" aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel"> Usuarios asignados a: {{this.servicio.actividadSeleccionada.codigo}} - {{periodo.descripcion}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">            
+          <div class="form-wizard"> 
+            <fieldset class="p-3">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Actividad Docente</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Descripcion:</label>
+                  <input type="text" row="2" type="text" id="nombres" name="nombres" placeholder="Nombres" class="form-control" [(ngModel)]="this.servicio.actividadSeleccionada.nombre" readonly=”readonly”>
+                </div>     
+                <div class="form-group col-md-12">
+                  <label>Descripcion:</label>
+                  <textarea row="2" type="text" id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" [(ngModel)]="this.servicio.actividadSeleccionada.descripcion" readonly=”readonly”></textarea>
+                </div>               
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Código: </label>
+                    <input type="text" id="cipasaporte" name="cipasaporte" placeholder="CI/Pasaporte" class="form-control" [(ngModel)]="this.servicio.actividadSeleccionada.codigo" readonly=”readonly”>
+                  </div>                     
+                  <div class="form-group col-md-6">
+                    <label>Estado:</label>
+                    <input type="text" id="correo" name="correo" placeholder="Correo" [(ngModel)]="this.servicio.actividadSeleccionada.estado" class="form-control" readonly=”readonly”>
+                  </div>      
+              </div>
+              <button  class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarHistorialActividades" (click)="obtenerHistorialUsuariosAsignados()">Historial Usuarios Asignados</button>   
+            </fieldset>
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Usuarios Asignados</strong>&nbsp;&nbsp;</legend>
+              <div *ngIf="this.servicio.actividadSeleccionadaVisualizar!=null">
+                <table class="table table-bordered">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white; width: 50%;">Periodo Academico</th>
+                      <th scope="col" style="color: white; width: 50%;">Nombre de Usuario</th>
+                    </tr>
+                  </thead>          
+                  <tbody>
+                    <tr *ngFor="let ad of this.servicio.actividadSeleccionadaVisualizar; index as i">
+                      <td>{{ad.periodo_academico}}</td>  
+                      <td>{{ad.nombre}} {{ad.apellido}}</td>     
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="this.servicio.actividadSeleccionadaVisualizar==null">
+                <h3 style="text-align: center;">NO EXISTE USUARIOS ASIGNADOS EN ESTE PERÍODO ACADÉMICO</h3>
+              </div>
+            </fieldset>
+            <div class="form-wizard-buttons">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>         
+          </div>
+        </div>
+      </div>        
+    </div>
+  </div>
+</div>
+<app-modal-visualizar-historial-actividades-asignadas></app-modal-visualizar-historial-actividades-asignadas>

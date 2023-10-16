@@ -1,0 +1,81 @@
+<div class="contenedor2">
+    <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+    <div class="box">
+        
+    </div>
+    <section id="profile" class="container" *ngFor="let user of usuario">
+        <div class="container">
+            <div class="row">
+              <div class="divDatos">
+                <legend><strong>&nbsp; Información Personal</strong>&nbsp;&nbsp;</legend>
+                <div>
+                  <div class="divFoto">
+                    <div class="card" >
+                      <img class="card-img-top" src="../../../assets/images/perfil.png">
+                      <div class="card-body">
+                          <div class="form-group">
+                              <input type="file" class="form-control-file" name="image" id="image">
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="divDatosPersonales">
+                    <div class="form-group">
+                      <div class="form-group col-md-12">
+                        <label>Nombres:</label>
+                        <input type="text" id="nombres" name="nombres" value ="{{user.nombre}}" class="form-control" disabled="">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Apellidos: </label>
+                        <input type="text" id="apellidos" name="apellidos" value="{{user.apellido}}" class="form-control" disabled="">
+                      </div>  
+                      <div class="form-group col-md-12">
+                        <label>Cedula/Pasaporte: </label>
+                        <input type="text" id="cipasaporte" name="cipasaporte" value="{{user.cedula}}{{user.pasaporte}}" class="form-control" readonly=”readonly”>
+                      </div>                     
+                      <div class="form-group col-md-12">
+                        <label>Correo:</label>
+                        <input type="text" id="correo" name="correo" value="{{user.correo}}" class="form-control" readonly=”readonly”>
+                      </div>              
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="divDatos">
+                <legend><strong>&nbsp; Contacto</strong>&nbsp;&nbsp;</legend>
+                  <div class="form-row">                  
+                    <div class="form-group col-md-6">
+                      <label>Teléfono: </label>
+                      <input type="text" id="telefono" name="telefono" value="{{user.telefono}}" class="form-control" disabled="">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Celular:</label>
+                      <input type="text" id="celular" name="celular" value="{{user.celular}}" class="form-control"  disabled="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Dirección: </label>
+                    <textarea name="direccion" id="direccion" cols="50" rows="4" value="{{user.direccion}}" class="form-control" disabled=""></textarea>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="divDatos">
+                <legend><strong>&nbsp; Informacion Institucional</strong>&nbsp;&nbsp;</legend>
+                <div class="form-row">                  
+                  <div class="form-group col-md-6">
+                    <label>Carrera: </label>
+                    <input type="text" id="carrera" name="carrera" value="{{user.carrera}}" class="form-control"  readonly=”readonly”>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+
+    </section>
+</div>

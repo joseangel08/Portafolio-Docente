@@ -1,0 +1,77 @@
+  <div class="modal fade" id="modalAsignarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:150%">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Asignar Rol - {{periodo.descripcion}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="form-wizard">
+            <h3>Nombre usuario: {{this.servicio.usuarioAsignarRol.nombre}} {{this.servicio.usuarioAsignarRol.apellido}}</h3>
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <ul class="list-unstyled">
+                  <fieldset class="p-3">
+                    <legend class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Roles
+                        Asignados</strong>&nbsp;&nbsp;</legend>
+                    <table class="table table-bordered">
+                      <thead style="background: #149b48;">
+                        <tr>
+                          <th scope="col" style="color: white;">Nombre de Rol</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let rol of this.servicio.rolesActuales">
+                          <td>{{rol.rol}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </fieldset>
+                  <span class="badge badge-pill badge-danger">Verifique que el Rol no este asignado.!</span>
+                </ul>
+              </div>
+              <div class="form-group col-md-7">
+                <ul class="list-unstyled" *ngFor="let rolUsuarioActivo of this.rolesUsuario">
+                  <li *ngIf="rolUsuarioActivo.rol=='Administrador'">
+                    <fieldset class="p-3">
+                      <legend class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong
+                          style="color: crimson;">&nbsp; Roles Disponibles</strong>&nbsp;&nbsp;</legend>
+                      <table class="table table-bordered">
+                        <thead style="background: #149b48;">
+                          <tr>
+                            <th scope="col" style="color: white; height: 20px;">Nombre de Rol</th>
+                            <th scope="col" style="color: white; height: 20px;">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let rol of roles|buscarRol:buscar; index as i">
+                            <td *ngIf="rol.estado=='Activo' && rol.nombre_rol!='Administrador'"
+                              style="height: 20px;">{{rol.nombre_rol}}</td>
+                            <td style="width: 25%; text-align: center;"
+                              *ngIf="rol.estado=='Activo' && rol.nombre_rol!='Administrador'" style="height: 20px;">
+                              <button *ngIf="rol.estado=='Activo' && rol.nombre_rol!='Administrador'"
+                                class="btn btn-danger" data-dismiss="modal" (click)="asignarRol(rol)">Asignar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </fieldset>
+                  </li>
+                </ul>
+              </div> 
+            </div>
+            <div class="form-wizard-buttons">
+              <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarHistorialRoles"
+                (click)="visualizarHistorialRoles()">Historial</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>

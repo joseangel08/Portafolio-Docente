@@ -1,0 +1,49 @@
+<div class="modal fade bd-example-modal-lg" id="modalVisualizarActDocAsig" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width: 125%;">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Actividades Docentes Asignadas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">            
+          <div class="form-wizard"> 
+            <label style="color: crimson; font-size: 1.5em;">{{this.servicio.usuarioSelect.nombre}} {{this.servicio.usuarioSelect.apellido}}</label> <br>
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Actividades Docentes Asignadas</strong>&nbsp;&nbsp;</legend>
+              <div *ngIf="this.servicio.actividadesAsignadas==null">
+                <h5>No tiene Actividades Docentes Asignadas</h5>
+              </div>
+              <div *ngIf="this.servicio.actividadesAsignadas!=null">
+                <table class="table table-bordered">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white;">#</th>
+                      <th scope="col" style="color: white;">Código</th>
+                      <th scope="col" style="color: white;">Actividad Docente</th>
+                      <th scope="col" style="color: white;">Período Académico</th>
+                    </tr>
+                  </thead>          
+                  <tbody>
+                    <tr *ngFor="let ad of this.servicio.actividadesAsignadas; index as i">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{ad.codigo}}</td>  
+                      <td>{{ad.descipcion_actividad}}</td>
+                      <td>{{ad.descripcion}}</td>                           
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+            </fieldset>
+            <div class="form-wizard-buttons">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div> 
+          </div>
+        </div>
+      </div>        
+    </div>
+  </div><
+</div>

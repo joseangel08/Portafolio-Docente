@@ -1,0 +1,45 @@
+<div class="modal fade" id="modalVisualizarCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Modificar Categoria de Documentacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="form-wizard">    
+              <h3>Datos de la Categoria:</h3>
+              <fieldset class="p-3">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label>Nombre de Categoria: <span>*</span></label>
+                    <input type="text" id="nombres" name="nombres" minlength="2"  required  
+                      #nombres="ngModel" title="No se aceptan numeros." placeholder="Nombre de categoria" class="form-control required" readonly [(ngModel)]="this.servicio.categoriaModificar.nombre">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label>Descripcion: <span>*</span></label>
+                    <input type="text" id="descripcion" name="nombres" minlength="2"  required  
+                      #nombres="ngModel" title="No se aceptan numeros." placeholder="Descripcion" readonly class="form-control required" [(ngModel)]="this.servicio.categoriaModificar.descripcion">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div *ngIf="nombres.touched && !nombres.valid"  class="alert alert-danger col-md-6">
+                    <div *ngIf="nombres.errors.required">Nombre es requerido</div>
+                    <div *ngIf="nombres.errors.minlength">Nombre debe ser de al manos 2 caracteres</div>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="form-wizard-buttons">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+                
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

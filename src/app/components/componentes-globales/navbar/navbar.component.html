@@ -1,0 +1,108 @@
+<div class="page-wrapper chiller-theme toggled">
+  <!-- Sidebar  -->
+  <nav id="sidebar" *ngFor="let user of usuario" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+          <h3 style="color: ivory;">Perfil</h3>
+      </div>
+      <div class="sidebar-header">
+          <div class="user-info">
+            <span class="user-name">Usuario:</span>
+            <h3 class="user-role" style="color: ivory;">{{user.nombre}} {{user.apellido}}</h3>
+            <span class="user-status">
+              <i class="fa fa-circle"></i>
+              <span style="color: ivory;">Online</span>
+            </span>
+          </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul class="texto-menu" *ngFor="let rol of roles">
+          <li class="texto-menu">
+              <a routerLink="/administrarUsuariosSistema" class="toggle"
+                  *ngIf="rol.rol=='Administrador' || rol.rol=='Director de Carrera'" ><mat-icon>assignment_ind</mat-icon> Administrar Usuarios</a>
+          </li>
+          <li class="texto-menu">
+            <a href="#gestRoles" data-toggle="collapse" aria-expanded="false"
+                    *ngIf="rol.rol=='Administrador'">	<mat-icon>account_box</mat-icon> Administrar Roles</a>
+            <ul class="collapse list-unstyled" id="gestRoles">
+              <li *ngIf="rol.rol=='Administrador' ">
+                <a routerLink="/administrarRolesSistema" class="colorSubmenu"><mat-icon>accessibility</mat-icon> Administrar Roles Sistema</a>
+              </li>
+              <li *ngIf="rol.rol=='Administrador'  || rol.rol=='Director de Carrera'">
+                <a routerLink="/asignarRoles" class="colorSubmenu"><mat-icon>accessibility_new</mat-icon> Asignar Roles Usuarios</a>
+              </li>
+            </ul>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/administrarPeriodAcad"  class="toggle"
+            *ngIf="rol.rol=='Administrador'"><mat-icon>build</mat-icon> Administrar Períodos Acad.</a>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/administrarCatDoc" class="toggle" 
+                    *ngIf="rol.rol=='Director de Carrera'"><mat-icon>description</mat-icon> Administrar Documentos Adicionales</a>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/administrarCarreras" class="toggle" 
+                    *ngIf="rol.rol=='Administrador'"><mat-icon> beenhere</mat-icon> Administrar Carreras</a>
+          </li>
+          <li class="texto-menu">
+            <a href="#gestActDoc" data-toggle="collapse" aria-expanded="false"
+              *ngIf="rol.rol=='Director de Carrera'"><mat-icon>description</mat-icon> Administrar Act. Docentes.</a>
+            <ul class="collapse list-unstyled" id="gestActDoc">
+              <li *ngIf="rol.rol=='Director de Carrera'">
+                  <a routerLink="/administrarActDoc" class="colorSubmenu"><mat-icon>photo_library</mat-icon> Administrar Act Docentes</a>
+              </li>
+              <li *ngIf="rol.rol=='Director de Carrera'">
+                  <a routerLink="/asignarActDoc" class="colorSubmenu"><mat-icon>photo_filter</mat-icon> Asignar Act. Docentes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/adminPort" class="toggle"
+                    *ngIf="rol.rol=='Director de Carrera'"><mat-icon>style</mat-icon> Administrar Portafolios</a>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/portDocente" class="toggle" 
+                    *ngIf="rol.rol=='Docente'">	<mat-icon>switch_camera</mat-icon> Portafolio Docente</a>
+          </li>
+          <li class="texto-menu">
+            <a routerLink="/visualizarPortafolios" class="toggle"
+                *ngIf="rol.rol!='Administrador' && rol.rol!='Director de Carrera' && rol.rol!='Docente'" >	<mat-icon>switch_camera</mat-icon> Visualizar Portafolios Docentes</a>
+        </li>
+          <h4 class="mensaje" *ngIf="roles==null">No tiene roles asignados</h4>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<script>
+$(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+    if (
+      $(this)
+        .parent()
+        .hasClass("active")
+    ) {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .parent()
+        .removeClass("active");
+    } else {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .next(".sidebar-submenu")
+        .slideDown(200);
+      $(this)
+        .parent()
+        .addClass("active");
+    }
+  });
+
+  $("#close-sidebar").click(function() {
+    $(".page-wrapper").removeClass("toggled");
+  });
+  $("#show-sidebar").click(function() {
+    $(".page-wrapper").addClass("toggled");
+  });
+
+  </script>

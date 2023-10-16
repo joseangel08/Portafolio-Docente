@@ -1,0 +1,221 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+  <div class="div-titulo sombra" *ngFor="let user of this.servicio.usuarioDatos">
+    <h3><strong>Mi portafolio Docente - {{user.nombre}} {{user.apellido}}</strong></h3>
+  </div>
+ <div class="box">
+  <ngb-accordion [closeOthers]="false" activeIds="datosPersonales">
+    <ngb-panel id="datosPersonales">
+      <ng-template ngbPanelTitle>
+        <h1> Datos Personales</h1>
+      </ng-template>
+      <ng-template ngbPanelContent *ngFor="let user of this.servicio.usuarioDatos">
+        <div class="container">
+          <div class="row">
+            <div class="divDatos">
+              <legend><strong>&nbsp; Información Personal</strong>&nbsp;&nbsp;</legend>
+              <div>
+                <div class="divFoto">
+                  <div class="card" >
+                    <img class="card-img-top" src="../../../assets/images/perfil.png">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" name="image" id="image">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="divDatosPersonales">
+                  <div class="form-group">
+                    <div class="form-group col-md-12">
+                      <label>Nombres:</label>
+                      <input type="text" id="nombres" name="nombres" value ="{{user.nombre}}" class="form-control" disabled="">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label>Apellidos: </label>
+                      <input type="text" id="apellidos" name="apellidos" value="{{user.apellido}}" class="form-control" disabled="">
+                    </div>  
+                    <div class="form-group col-md-12">
+                      <label>Cedula/Pasaporte: </label>
+                      <input type="text" id="cipasaporte" name="cipasaporte" value="{{user.cedula}}{{user.pasaporte}}" class="form-control" readonly=”readonly”>
+                    </div>                     
+                    <div class="form-group col-md-12">
+                      <label>Correo:</label>
+                      <input type="text" id="correo" name="correo" value="{{user.correo}}" class="form-control" readonly=”readonly”>
+                    </div>              
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="divDatos">
+              <legend><strong>&nbsp; Contacto</strong>&nbsp;&nbsp;</legend>
+                <div class="form-row">                  
+                  <div class="form-group col-md-6">
+                    <label>Teléfono: </label>
+                    <input type="text" id="telefono" name="telefono" value="{{user.telefono}}" class="form-control" disabled="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Celular:</label>
+                    <input type="text" id="celular" name="celular" value="{{user.celular}}" class="form-control"  disabled="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dirección: </label>
+                  <textarea name="direccion" id="direccion" cols="50" rows="4" value="{{user.direccion}}" class="form-control" disabled=""></textarea>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="divDatos">
+              <legend><strong>&nbsp; Informacion Institucional</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">                  
+                <div class="form-group col-md-6">
+                  <label>Carrera: </label>
+                  <input type="text" id="carrera" name="carrera" value="{{user.carrera}}" class="form-control"  readonly=”readonly”>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Período Académico: </label>
+                  <input type="text" id="periodo" name="periodo" value="{{this.periodo.descripcion}}" placeholder="Periodo" class="form-control" readonly=”readonly”>
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <div id="divBtnModificar">
+          <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarDocente" (click)="modificarUsuario(user)">Modificar</button>
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <div *ngIf="categorias!=null">
+      <ngb-panel *ngFor="let categoria of categorias">
+        <ng-template ngbPanelTitle>
+          <h1>{{categoria.nombre}}</h1>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <h1>{{categoria.descripcion}}</h1>
+          <div id="divAgregarDocumento" class="divAgregar">
+            <button class="btn btn-success" data-toggle="modal" data-target="#modalCargarDocumento" (click)="agregarDocumento(categoria)">Agregar Documento</button>
+          </div>
+          <div class="table-responsive-md">
+            <div id="divTabla">
+              <table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        class="table table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" style="width: 20%;">Nombres</th>
+                    <th scope="col" style="width: 20%;">Fecha Ingreso</th>
+                    <th scope="col" style="width: 20%;">Estado</th>
+                    <th scope="col" style="width: 50%;">Observacion</th>
+                    <th scope="col">&nbsp;</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let documento of documentacion_general">
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">{{documento.nombre}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">{{documento.fecha_ingreso}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">{{documento.estado}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">{{documento.observacion}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">
+                      <button class="btn btn-info" *ngIf="documento.estado" target="_blank" (click)="abrirPdf(documento)">Visualizar</button>
+                    </td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='No Validado'" class="noValidado">
+                      <button class="btn btn-light" (click)="eliminarDocumentoGeneral(documento)" data-toggle="modal">Eliminar</button>
+                    </td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">{{documento.nombre}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">{{documento.fecha_ingreso}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">{{documento.estado}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">{{documento.observacion}}</td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">
+                      <button class="btn btn-info" *ngIf="documento.estado" target="_blank" (click)="abrirPdf(documento)">Visualizar</button>
+                    </td>
+                    <td *ngIf="categoria.id==documento.id_categoria && documento.estado=='Validado'" class="validado">
+                      <button class="btn btn-danger" disabled="true" data-toggle="modal">Eliminar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>       
+          </div> 
+        </ng-template>
+      </ngb-panel>
+    </div>
+    <div>
+      <ngb-panel id="actDoc">
+        <ng-template ngbPanelTitle>
+          <h1>Actividades Docentes</h1>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="container">
+            <ngb-accordion [closeOthers]="false">
+              <ngb-panel *ngFor="let actividad of this.servicio.actividadesAsignadas">
+                <ng-template ngbPanelTitle>   
+                  <h1>{{actividad.codigo}}  - {{actividad.nombre_actividad}}</h1>            
+                </ng-template>
+                <ng-template ngbPanelContent>   
+                  <h1>{{actividad.descripcion}}</h1>
+                  <div id="divAgregarDocumento" class="divAgregar">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalCargarDocumentoAct" 
+                    (click)="agregarDocumentoActividad(actividad.id_actividad, actividad.id_portafolio_docente, actividad.codigo)">Agregar Documento</button>
+                  </div>
+                  <div class="table-responsive-md">
+                    <div id="divTabla">
+                      <table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        class="table table-hover">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col" style="width: 25%;">Nombres</th>
+                            <th scope="col" style="width: 15%;">Fecha Ingreso</th>
+                            <th scope="col" style="width: 15%;">Estado</th>
+                            <th scope="col" style="width: 40%;">Observacion</th>
+                            <th scope="col">&nbsp;</th>
+                            <th scope="col">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let documento of documentacion_actividad">
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">{{documento.nombre}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">{{documento.fecha_ingreso}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">{{documento.estado}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">{{documento.observacion}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">
+                              <!--<button class="btn btn-info" target="_blank" data-toggle="modal" data-target="#modalVisualizarDocumento" (click)="abrirPdf(documento)">Visualizar</button>-->
+                              <button class="btn btn-info" target="_blank" (click)="abrirPdf(documento)">Visualizar</button>
+                            </td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='No Validado'" class="noValidado">
+                              <button class="btn btn-light" (click)="eliminarDocumento(documento)" data-toggle="modal">Eliminar</button>
+                            </td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">{{documento.nombre}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">{{documento.fecha_ingreso}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">{{documento.estado}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">{{documento.observacion}}</td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">
+                              <!--<button class="btn btn-info" target="_blank" data-toggle="modal" data-target="#modalVisualizarDocumento" (click)="abrirPdf(documento)">Visualizar</button>-->
+                              <button class="btn btn-info" target="_blank" (click)="abrirPdf(documento)">Visualizar</button>
+                            </td>
+                            <td *ngIf="actividad.codigo==documento.codigo && documento.estado=='Validado'" class="validado">
+                              <button  class="btn btn-danger" disabled="true" data-toggle="modal">Eliminar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>       
+                  </div>           
+                </ng-template>              
+              </ngb-panel> 
+            </ngb-accordion>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </div>
+  </ngb-accordion>
+ </div>
+</div>
+<app-modal-modificar-docente></app-modal-modificar-docente>
+<app-modal-cargar-documento></app-modal-cargar-documento>
+<app-modal-cargar-documento-actividad></app-modal-cargar-documento-actividad>
+<app-modal-visualizar-documento></app-modal-visualizar-documento>
+

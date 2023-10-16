@@ -1,0 +1,74 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="contenedor">
+  <div class="div-titulo sombra">
+    <h3 style="text-align-last: center"><strong>Administrar Actividades Docentes</strong></h3>
+  </div>
+  
+  <div class="box">
+    <div class="input-group">
+      <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalCrearActividadDocente" style="width: 150px; margin-bottom: 10px;">Nueva Actvidad</button>
+    </div>
+    <div class="table-responsive-md">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+        </span>
+        <input type="text" [(ngModel)]="buscar" name="buscar" class="form-control" placeholder="Buscar">
+      </div>
+      <div id="divTabla">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Codigo</th>
+              <th scope="col" style="width: 20%;">Nombre</th>
+              <th scope="col" style="width: 50%;">Descripción</th>
+              <th scope="col">Estado</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">&nbsp;</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let actividadDocente of actividadesDocentes|buscarActividadDocente:buscar; index as i">
+              <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.codigo}}</td>
+              <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.nombre}}</td>
+              <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.descripcion}}</td>
+              <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.estado}}</td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.codigo}}</td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.nombre}}</td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.descripcion}}</td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.estado}}</td>
+              <td *ngIf="actividadDocente.estado=='Activo'">
+                <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarActividadDocente" (click)="visualizarActividadDocente(actividadDocente)" >Visualizar</button>
+              </td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+                <button class="btn btn-info" disabled="true">Visualizar</button>
+              </td>
+              <td *ngIf="actividadDocente.estado=='Activo'" >
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarActividadDocente" (click)="modificarActividadDocente(actividadDocente)">Modificar</button>
+              </td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+                  <button class="btn btn-success" disabled="true">Modificar</button>
+                </td>
+              <td *ngIf="actividadDocente.estado=='Activo'">
+                <button class="btn btn-danger" (click)="desactivarActividadDocente(actividadDocente)">Inactivar</button>
+              </td>
+              <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+                <button class="btn btn-warning" (click)="activarActividadDocente(actividadDocente)">Activar</button>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-crear-actividad-docente></app-modal-crear-actividad-docente>
+<app-modal-visualizar-actividad-docente></app-modal-visualizar-actividad-docente>
+<app-modal-asignar-actividad-docente></app-modal-asignar-actividad-docente>
+<app-modal-modificar-actividad-docente></app-modal-modificar-actividad-docente>

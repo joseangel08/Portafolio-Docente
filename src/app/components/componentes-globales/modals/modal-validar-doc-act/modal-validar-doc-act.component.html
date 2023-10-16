@@ -1,0 +1,32 @@
+<div class="modal fade" id="modalValidarDocAct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Validar Documento - {{this.servicio.docActividad.nombre}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="form-wizard">    
+              <form class="form-rol" #formUsuario="ngForm" (ngSubmit)="validarDocAct(this.servicio.docActividad)">
+                <h3>Observacion:</h3>     
+                <div class="form-group col-md-12 col-xs-12">
+                  <label>Observación sobre el documento: <span>(Opcional)</span></label>
+                  <input type="text-area" id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" [(ngModel)]="this.servicio.docActividad.observacion">
+                </div>
+                <div class="form-wizard-buttons">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-next">Validar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+                
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

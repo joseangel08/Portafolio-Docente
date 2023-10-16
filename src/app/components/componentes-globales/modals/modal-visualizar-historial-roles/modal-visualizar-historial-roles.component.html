@@ -1,0 +1,38 @@
+<div class="modal fade" id="modalVisualizarHistorialRoles" tabindex="-1" role="dialog" style="overflow-y: scroll;" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:150%">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Historial de Roles Asignados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">            
+          <div class="form-wizard"> 
+              <fieldset class="p-3 mt-4">
+                <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Historial de Roles Asignados</strong>&nbsp;&nbsp;</legend>
+                <table class="table table-bordered">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white; width: 100px;">Nombre de Rol</th>
+                      <th scope="col" style="color: white;  width: 100px;">Periodo Academico</th>
+                    </tr>
+                  </thead>          
+                  <tbody>
+                    <tr *ngFor="let rol of this.servicio.rolesUsuarioHistorial|buscarRol:buscar; index as i">
+                      <td>{{rol.rol}}</td>  
+                      <td>{{rol.periodo_academico}}</td>    
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+              <div class="form-wizard-buttons">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </div> 
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

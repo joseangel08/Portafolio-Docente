@@ -1,0 +1,48 @@
+<div class="modal fade" id="modalModificarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:150%">
+        <div class="modal-header modal-background">
+          <h5 class="titulo" id="exampleModalLabel">Modificar Rol</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <section >
+          <div class="container">
+            <div class="row">
+              <div class="form-wizard">    
+                <form class="form-usuario" #formRol="ngForm">
+                  <h3>Datos rol</h3>     
+
+              <div class="form-group" style="text-align: left">
+                <label>Nombre Rol: <span>*</span></label>
+                <input type="text" id="nombres" name="nombres" minlength="2" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚÜü\s]+"  
+                #nombres="ngModel" title="Letras y números. Tamaño mínimo: 3 caracteres." placeholder="Nombres" class="form-control required" [(ngModel)]="this.servicio.rolModificar.nombre_rol">
+              </div>
+              <div *ngIf="nombres.touched && !nombres.valid"  class="alert alert-danger">
+                <div *ngIf="nombres.errors.required">Nombre es requerido</div>
+                <div *ngIf="nombres.errors.minlength">Nombre debe ser de al manos 2 caracteres</div>
+                <div *ngIf="nombres.errors.pattern">Solo se aceptan letras</div>
+              </div>
+              <div class="row form-inline">
+                <div class="form-group col-md-3 col-xs-3">
+                  <label>Estado: <span>*</span></label>
+                  <input type="text" id="txtEstado" name="txtEstado" placeholder="Estado" class="form-control" [(ngModel)]="this.servicio.rolModificar.estado" readonly="readonly">
+                  <select class="form-control" [(ngModel)]="this.servicio.rolModificar.estado" id="estado" name="estado" required>
+                      <option selected value="Activo">Activo</option>
+                      <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-wizard-buttons">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-next" (click)="modificarRol(formRol)">Guardar</button>
+              </div>
+        </form>
+        <!-- Form Wizard -->
+      </div>
+    </div>
+                
+  </div>
+  </section>
+  </div>

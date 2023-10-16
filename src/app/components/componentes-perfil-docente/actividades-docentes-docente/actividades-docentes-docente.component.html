@@ -1,0 +1,72 @@
+<div class="contenedor2">
+  <app-navbartop></app-navbartop>
+</div>
+<app-navbar></app-navbar>
+<div class="container">
+  <h1 style="text-align-last: center">Administración de Activiades Docentes</h1>
+  <div class="col">
+      <div class="row">
+          <div class="col-lg-6">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button class="btn btn-primary float-right mb-3" disabled="true" type="button">Buscar</button>
+              </span>
+              <input type="text" [(ngModel)]="buscar" name="buscar" class="form-control" placeholder="Buscar">
+            </div>
+            <div class="input-group">
+              <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalCrearActividadDocente">Nueva Actvidad Docente</button>
+            </div>
+          </div>
+          </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Estado</th>
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let actividadDocente of actividadesDocentes|buscarActividadDocente:buscar; index as i">
+          <th *ngIf="actividadDocente.estado=='Activo'" scope="row">{{i+1}}</th>
+          <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.codigo}}</td>
+          <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.descripcion}}</td>
+          <td *ngIf="actividadDocente.estado=='Activo'">{{actividadDocente.estado}}</td>
+          <th *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado" scope="row">{{i+1}}</th>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.codigo}}</td>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.descripcion}}</td>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">{{actividadDocente.estado}}</td>
+          <td *ngIf="actividadDocente.estado=='Activo'">
+            <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarActividadDocente" (click)="visualizarActividadDocente(actividadDocente)" >Visualizar</button>
+          </td>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+            <button class="btn btn-info" disabled="true">Visualizar</button>
+          </td>
+          <td *ngIf="actividadDocente.estado=='Activo'" >
+            <button class="btn btn-success" data-toggle="modal" data-target="#modalModificarActividadDocente" (click)="modificarActividadDocente(actividadDocente)">Modificar</button>
+          </td>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+              <button class="btn btn-success" disabled="true">Modificar</button>
+            </td>
+          <td *ngIf="actividadDocente.estado=='Activo'">
+            <button class="btn btn-danger" (click)="desactivarActividadDocente(actividadDocente)">Inactivar</button>
+          </td>
+          <td *ngIf="actividadDocente.estado=='Inactivo'" class="desactivado">
+            <button class="btn btn-warning" (click)="activarActividadDocente(actividadDocente)">Activar</button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-modal-crear-actividad-docente></app-modal-crear-actividad-docente>
+<app-modal-visualizar-actividad-docente></app-modal-visualizar-actividad-docente>
+<app-modal-visualizar-actividad-docente></app-modal-visualizar-actividad-docente>
+<app-modal-asignar-actividad-docente></app-modal-asignar-actividad-docente>
+<app-modal-modificar-actividad-docente></app-modal-modificar-actividad-docente>

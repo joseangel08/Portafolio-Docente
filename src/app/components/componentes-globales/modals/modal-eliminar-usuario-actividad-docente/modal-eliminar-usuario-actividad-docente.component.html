@@ -1,0 +1,66 @@
+<div class="modal fade bd-example-modal-lg" id="modalEliminarUsuarioAD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="width: 125%;">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Eliminar Usuario de Actividad Docente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">            
+          <div class="form-wizard"> 
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Información Actvidad Docente</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row" style="text-align: left">
+                <div class="form-group col-md-12">
+                  <label>Nombres:</label>
+                  <textarea row="2" type="text" id="nombres" name="nombres" placeholder="Nombres" class="form-control" [(ngModel)]="this.servicio.actividadSeleccionada.descripcion" readonly=”readonly”></textarea>
+                </div>               
+              </div>
+              <div class="form-row" style="text-align: left">
+                <div class="form-group col-md-6" style="text-align: left">
+                    <label>Código: </label>
+                    <input type="text" id="cipasaporte" name="cipasaporte" placeholder="CI/Pasaporte" class="form-control" [(ngModel)]="this.servicio.actividadSeleccionada.codigo" readonly=”readonly”>
+                  </div>                     
+                  <div class="form-group col-md-6" style="text-align: left">
+                    <label>Estado:</label>
+                    <input type="text" id="correo" name="correo" placeholder="Correo" [(ngModel)]="this.servicio.actividadSeleccionada.estado" class="form-control" readonly=”readonly”>
+                  </div>      
+              </div>
+            </fieldset>
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Usuarios Asignados</strong>&nbsp;&nbsp;</legend>
+              <div class="form-group col-md-6">
+                <table class="table table-hover table-bordered" style="width: 207%;">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white;">#</th>
+                      <th scope="col" style="color: white;">Periodo Academico</th>
+                      <th scope="col" style="color: white;">Fecha Inicio</th>
+                      <th scope="col" style="color: white;">Fecha Fin</th>
+                      <th scope="col" style="color: white;">Nombre de Usuario</th>
+                      <th scope="col" style="color: white;"></th>
+                    </tr>
+                  </thead>          
+                  <tbody>
+                    <tr *ngFor="let ad of this.servicio.actividadSeleccionadaVisualizar; index as i">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{ad.periodo_academico}}</td>  
+                      <td>{{ad.fecha_inicio}}</td>
+                      <td>{{ad.fecha_fin}}</td> 
+                      <td>{{ad.nombre}} {{ad.apellido}}</td>  
+                      <td style="width: 25%; text-align: center;">
+                        <button class="btn btn-danger" data-dismiss="modal" (click)="eliminarUsuarioAD(ad)">Eliminar</button>
+                      </td>    
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

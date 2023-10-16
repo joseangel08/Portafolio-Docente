@@ -1,0 +1,38 @@
+<div class="modal fade" id="modalVisualizarActividadDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Visualizar Actividad Docente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="form-wizard">    
+              <h3>Datos Actividad Docente:</h3>  
+              <div class="form-group col-md-12 col-xs-12">
+                <label>Nombre de Actividad Docente: </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control required" [(ngModel)]="this.servicio.actividadDocenteSelect.nombre" readonly=”readonly”>
+              </div>   
+              <div class="form-group col-md-12 col-xs-12">
+                <label>Descripción de Actividad Docente: </label>
+                <textarea id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control required" [(ngModel)]="this.servicio.actividadDocenteSelect.descripcion" readonly=”readonly”></textarea>
+              </div>
+              <div class="form-group col-md-12 col-xs-12">
+                <label>Código de Actividad Docente:</label>
+                <input type="text" id="codigo" name="codigo" placeholder="Código" class="form-control required" [(ngModel)]="this.servicio.actividadDocenteSelect.codigo" readonly=”readonly”>
+              </div>
+              <div class="col">    
+                <div class="form-wizard-buttons">
+                  <button type="button" class="btn btn-danger"  data-dismiss="modal">Cerrar</button>
+                </div> 
+              </div>
+            </div>
+          </div>  
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

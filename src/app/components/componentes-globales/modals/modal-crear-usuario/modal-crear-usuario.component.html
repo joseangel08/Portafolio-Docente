@@ -1,0 +1,144 @@
+
+<div class="modal fade" id="modalCrearUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <div class="modal-title col-11 text-center">
+          <div *ngFor="let rol of roles">
+            <h5 class="titulo" id="exampleModalLabel" *ngIf="rol.rol=='Administrador'">Crear Usuario- {{periodo.descripcion}}</h5>
+            <h5 class="titulo" id="exampleModalLabel" *ngIf="rol.rol=='Director de Carrera'">Crear Docente - {{periodo.descripcion}}</h5>
+          </div> 
+        </div>   
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+          <div class="row">            
+            <div class="form-wizard" >    
+                  <!-- Form Wizard -->
+              <form #formUsuario="ngForm" (ngSubmit)="guardarUsuario(formUsuario)">
+                <div *ngFor="let rol of roles">
+                  <h3 *ngIf="rol.rol=='Administrador'"><mat-icon>account_box</mat-icon> Datos Usuario</h3> 
+                  <h3 *ngIf="rol.rol=='Director de Carrera'">Datos Docente</h3>                      
+                </div>
+              <fieldset class="p-3">
+                <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Personal</strong>&nbsp;&nbsp;</legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Nombres: <span>*</span></label>
+                    <input type="text" id="nombres" name="nombres" minlength="2"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚÜü\s]+"  
+                      #nombres="ngModel" title="Letras y números. Tamaño mínimo: 3 caracteres." placeholder="Nombres" class="form-control required" [(ngModel)]="usuario.nombre">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Apellidos: <span>*</span></label>
+                    <input type="text" id="apellidos" #apellidos="ngModel" minlength="2" name="apellidos" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚÜü\s]+"  
+                    placeholder="Apellidos" class="form-control required" [(ngModel)]="usuario.apellido">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div *ngIf="nombres.touched && !nombres.valid"  class="alert alert-danger col-md-6">
+                    <div *ngIf="nombres.errors.required">Nombre es requerido</div>
+                    <div *ngIf="nombres.errors.minlength">Nombre debe ser de al manos 2 caracteres</div>
+                    <div *ngIf="nombres.errors.pattern">Solo se aceptan letras</div>
+                  </div>
+                  <div *ngIf="apellidos.touched && !apellidos.valid"  class="alert alert-danger col-md-6">
+                    <div *ngIf="apellidos.errors.required">Apellido es requerido</div>
+                    <div *ngIf="apellidos.errors.minlength">Apellido debe ser de al manos 2 caracteres</div>
+                    <div *ngIf="apellidos.errors.pattern">Solo se aceptan letras</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label>Cedula/Pasaporte:<span>*</span></label>
+                    <input type="text" id="cedula" name="cedula" placeholder="CI" minlength="10"  
+                      required pattern="[0-9a-zA-Z]*" #cedula="ngModel" title="Se permiten solo números y letras." class="form-control required" [(ngModel)]="ciPasap"> 
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label>Seleccionar<span> *</span></label>
+                    <select class="form-control" name="selectOption" [(ngModel)]="opcion" required>
+                      <option value="cedula">Cedula</option>
+                      <option value="pasaporte">Pasaporte</option>
+                    </select> 
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Correo: <span>*</span></label>
+                    <input type="text" id="correo" required name="correo" placeholder="Correo"  
+                    #correo="ngModel" class="form-control required" [(ngModel)]="usuario.correo">                      
+                  </div>  
+                </div>
+                <div class="form-row">
+                  <div *ngIf="cedula.touched && !cedula.valid"  class="alert alert-danger col-md-6">
+                    <div *ngIf="cedula.errors.required">Cedula es requerida</div>
+                    <div *ngIf="opcion=='cedula' && cedula.errors.minlength">Cedula debe tener 10 caracteres.</div>
+                    <div *ngIf="opcion=='pasaporte' && cedula.errors.minlength">Pasaporte debe tener mas de 10 caracteres.</div>
+                    <div *ngIf="cedula.errors.pattern">Solo se aceptan números.</div>
+                  </div> 
+                  <div *ngIf="correo.touched && !correo.valid"  class="alert alert-danger col-md-6">
+                    <div *ngIf="correo.errors.required">Correo es requerido</div>
+                    <div *ngIf="correo.errors.email">Correo incorrecto usuario@mail.com</div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset  class="p-3 mt-4">
+                <legend  class="w-auto legendTitulo">&nbsp;&nbsp;<strong>&nbsp; Contacto</strong>&nbsp;&nbsp;</legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="form-control required" [(ngModel)]="usuario.telefono" >
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Celular:</label>
+                    <input type="text" id="celular" name="celular" placeholder="Celular" class="form-control required" [(ngModel)]="usuario.celular">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dirección:</label>
+                  <textarea name="direccion" id="direccion" cols="50" rows="4" placeholder="Direccion" class="form-control" [(ngModel)]="usuario.direccion"></textarea>
+                </div>
+              </fieldset>   
+              <fieldset  class="p-3 mt-4">
+                <legend  class="w-auto legendTitulo">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Institucional</strong>&nbsp;&nbsp;</legend>
+                <div *ngFor="let rol of roles">
+                  <div class="form-row" *ngIf="rol.rol=='Administrador'">
+                    <div class="form-group col-md-6">
+                      <label>Carrera: <span>*</span></label>
+                      <select class="form-control" [(ngModel)]="usuario.id_carrera" id="carrera" name="carrera" required>
+                        <option *ngFor="let carreras of carrera; index as i" value="{{carreras.id}}">{{carreras.nombre}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>                
+                <div *ngFor="let rol of roles">
+                  <div class="form-row" *ngIf="rol.rol=='Director de Carrera'">
+                    <div class="form-group col-md-6">
+                      <label>Carrera: <span>*</span></label>
+                      <select class="form-control" [(ngModel)]="usuario.id_carrera" id="carrera" name="carrera">
+                        <ng-container *ngFor="let carreras of carrera; index as i" >
+                            <option *ngIf="carreras.nombre==user.carrera" value="{{carreras.id}}">{{carreras.nombre}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                </div>  
+              </fieldset>
+              <div class="form-group col-md-4">
+                <label>Estado: <span>*</span></label>
+                <select class="form-control" [(ngModel)]="usuario.estado" id="estado" name="estado" required>
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </select>
+              </div>
+              <div class="form-wizard-buttons">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-next">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </div><
+</div>

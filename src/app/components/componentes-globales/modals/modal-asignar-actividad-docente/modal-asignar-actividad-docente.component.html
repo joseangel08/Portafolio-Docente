@@ -1,0 +1,61 @@
+<div class="modal fade" id="modalAsignarActividadDocente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <h5 class="titulo" id="exampleModalLabel">Asignar Usuario a: {{this.servicio.actividadSeleccionada.codigo}} - {{periodo.descripcion}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row">  
+          <div class="form-wizard"> 
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Usuarios Asignados</strong>&nbsp;&nbsp;</legend>
+                <table class="table table-hover table-bordered tabla-fuente">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white; width: 90%;">Nombre de Usuario</th>
+                    </tr>
+                  </thead>          
+                  <tbody>
+                    <tr *ngFor="let ad of this.servicio.actividadSeleccionadaVisualizar; index as i">
+                      <td>{{ad.nombre}} {{ad.apellido}}</td>       
+                    </tr>
+                  </tbody>
+                </table>
+              <span class="badge-pill badge-danger" style="font-size:0.60em;">Por favor VERIFIQUE que el USUARIO a ASIGNAR no esté ASIGNADO a esta ACTVIDAD DOCENTE en el mismo PERÍODO ACADÉMICO.!</span>
+            </fieldset>
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Usuario Disponibles</strong>&nbsp;&nbsp;</legend>
+                <div class="input-group">
+                  <input type="text" [(ngModel)]="buscar" name="buscar" class="form-control" placeholder="Buscar">
+                </div>
+                <table class="table table-hover table-bordered tabla-fuente">
+                  <thead style="background: #149b48;">
+                    <tr>
+                      <th scope="col" style="color: white; width: 30%;">Cedula/Pasaporte</th>
+                      <th scope="col" style="color: white; width: 100%;">Nombres</th>
+                      <th scope="col">&nbsp;</th>
+                    </tr>
+                  </thead>                
+                  <tbody>
+                    <tr *ngFor="let usuario of usuarios|buscarUsuario:buscar; index as i">
+                      <td *ngIf="usuario.id!=1">{{usuario.cedula}}{{usuario.pasaporte}}</td>
+                      <td *ngIf="usuario.id!=1" style="text-align: left">{{usuario.nombre}} {{usuario.apellido}}</td>
+                      <td *ngIf="usuario.id!=1">
+                        <button class="btn btn-success" (click)="asignarActividadDocente(this.servicio.actividadSeleccionada, usuario)">Asignar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </fieldset>
+            <div class="form-wizard-buttons">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>  
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

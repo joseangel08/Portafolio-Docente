@@ -1,0 +1,45 @@
+<div class="modal fade" id="modalCargarDocumentoAct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngFor="let user of usuarioActivo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:150%">
+      <div class="modal-header modal-background">
+        <h5 class="titulo"id="exampleModalLabel">Cargar Documento a Portafolio Docente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="form-wizard"> 
+              <fieldset class="p-3 mt-4">
+                <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong style="color: crimson;">&nbsp; Información del Documento</strong>&nbsp;&nbsp;</legend>
+                  <form class="form-rol" #formUsuario="ngForm" (ngSubmit)="guardarArchivo()">
+                    <div class="form-group col-md-12" style="text-align: left">
+                      <label>Nombre de documento: <span>*</span></label>
+                      <input type="text" id="nombre" name="nombre" minlength="2"  
+                      #nombre="ngModel" required title="Letras y números. Tamaño mínimo: 3 caracteres." placeholder="Nombre de documento" class="form-control required" [(ngModel)]="this.informacionArchivo.nombre_documento" required>
+                      <div *ngIf="nombre.touched && !nombre.valid"  class="alert alert-danger">
+                        <div *ngIf="nombre.errors.required">Nombre es requerido</div>
+                        <div *ngIf="nombre.errors.minlength">Nombre debe ser de al manos 2 caracteres</div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-12" style="text-align: left">
+                      <label>Comentario: </label>
+                      <textarea name="comentario" id="comentario" cols="50" rows="4" placeholder="Comentario" class="form-control" [(ngModel)]="this.informacionArchivo.comentario"></textarea>
+                    </div>
+                    <div class="form-group col-md-12" style="text-align: left">
+                      <input name="btnCargar" required type="file" aria-label="Archivo" accept=".pdf" (change)="getFile($event)">
+                    </div>
+                    <div class="form-wizard-buttons">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-next">Guardar</button>
+                    </div>
+                  </form>
+              </fieldset>       
+            </div>
+          </div>
+         </div>
+        </section>
+      </div>
+    </div>
+  </div>

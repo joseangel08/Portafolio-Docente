@@ -1,0 +1,28 @@
+<div class="modal fade" id="modalSeleccionarPeriodo" data-backdrop="false">
+  <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-background">
+          <h5 class="titulo" id="exampleModalLabel">Seleccionar Periodo Académico</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="form-wizard">    
+                <div class="form-row">
+                  <div *ngFor="let periodo of periodosAcademicos">
+                      <a class="borde-elemento" style="color:blanchedalmond;" href="/perfil"  (click)="seleccionarPeriodo(periodo)">{{periodo.descripcion}}</a>
+                  </div>                   
+                </div>                 
+                <div class="form-wizard-buttons">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div id="profile" class="container" *ngFor="let user of usuario" id="div2">
+    <div class="divContainer">
+      <div class="row">
+            <div class="col-sm-3"><!--left col-->   
+          </div><!--/col-3-->
+          <div class="col-sm-9">
+              <h1>Datos Personales</h1>
+          </div><br>
+          <div class="text-center">
+              <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar"><br>
+              <button type="button" class="btn btn-outline-success">Cambiar Foto</button>
+            </div><br>
+          <div class="col-sm-9">
+            <div class="tab-content">
+              <div class="tab-pane active" id="home">
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="nombres"><h4>Nombres</h4></label>
+                                <input type="text" class="form-control" name="nombres" id="nombres" placeholder="{{user.nombre}}" readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                              <label for="apellidos"><h4>Apellidos</h4></label>
+                                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="{{user.apellido}}" readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="telefono"><h4>Telefono</h4></label>
+                                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="{{user.telefono}}"  readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                               <label for="celular"><h4>Celular</h4></label>
+                                <input type="text" class="form-control" name="celular" id="celular" placeholder="{{user.celular}}"  readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Correo</h4></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="{{user.correo}}"  readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="direccion"><h4>Direccion</h4></label>
+                                <input type="text" class="form-control" id="direccion" placeholder="{{user.direccion}}"  readonly=”readonly”>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                             <div class="col-xs-12">
+                                  <br>
+                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Modificar</button>
+                              </div>
+                        </div>
+                    </form>
+                <hr>
+               </div><!--/tab-pane-->
+            </div><!--/tab-content-->
+          </div><!--/col-9-->
+      </div><!--/row-->
+      </div>
+  
+    </div>

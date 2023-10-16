@@ -1,0 +1,97 @@
+<div class="modal fade" id="modalVisualizarUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-background">
+        <div class="modal-title col-11 text-center">
+          <h5 class="titulo" id="exampleModalLabel">INFORMACIÓN USUARIO - {{periodo.descripcion}}</h5>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="row" >
+          <div class="form-wizard">  
+            <h3>{{this.servicio.usuarioSelect.nombre}} {{this.servicio.usuarioSelect.apellido}} </h3>  
+            <fieldset class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Personal</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Nombres:</label>
+                  <input type="text" id="nombres" name="nombres" placeholder="Nombres" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.nombre" readonly=”readonly”>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Apellidos: </label>
+                  <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.apellido" readonly=”readonly”>
+                </div>                
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Cedula/Pasaporte: </label>
+                  <input type="text" id="cipasaporte" name="cipasaporte" placeholder="CI/Pasaporte" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.cedula" readonly=”readonly”>
+                </div>                     
+                <div class="form-group col-md-6">
+                  <label>Correo:</label>
+                  <input type="text" id="correo" name="correo" placeholder="Correo" [(ngModel)]="this.servicio.usuarioSelect.correo" class="form-control" readonly=”readonly”>
+                </div>      
+              </div>
+            </fieldset>
+            <fieldset  class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<strong>&nbsp; Contacto</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">                  
+                <div class="form-group col-md-6">
+                  <label>Teléfono: </label>
+                  <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.telefono" readonly=”readonly”>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Celular:</label>
+                  <input type="text" id="celular" name="celular" placeholder="Celular" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.celular" readonly=”readonly”>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Dirección: </label>
+                <textarea name="direccion" id="direccion" cols="50" rows="4" placeholder="Direccion" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.direccion" readonly=”readonly”></textarea>
+              </div>
+            </fieldset>
+            <fieldset  class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Institucional</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Carrera: </label>
+                  <input type="text" id="carrera" name="carrera" placeholder="Carrera" class="form-control" [(ngModel)]="this.servicio.usuarioSelect.carrera" readonly=”readonly”>
+                </div> 
+              </div>
+            </fieldset> 
+            <fieldset  class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Información Adicional</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Roles Asignados:</label>
+                  <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarRolesUsuario" (click)="visualizarRolesUsuario(this.servicio.usuarioSelect)">Visualizar Roles Asignados</button>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Actividades Asignadas: </label>
+                  <button class="btn btn-info" data-toggle="modal" data-target="#modalVisualizarActDocAsig" (click)="visualizarActividadesAsignadas(this.servicio.usuarioSelect)">Visualizar Actividades Asignadas</button>
+                </div>                
+              </div>
+            </fieldset>
+            <fieldset  class="p-3 mt-4">
+              <legend  class="w-auto">&nbsp;&nbsp;<i class="fas fa-user-tag"></i><strong>&nbsp; Portafolio Docente</strong>&nbsp;&nbsp;</legend>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Habilitar Portafolio Docente:</label>
+                  <button class="btn btn-info" data-toggle="modal" (click)="habilitarPortafolio()">Habilitar</button>
+                </div>                
+              </div>
+            </fieldset>
+            <div class="form-wizard-buttons">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>           
+  </div>
+</div>
+<app-modal-visualizar-roles-usuario></app-modal-visualizar-roles-usuario>
+<app-modal-visualizar-actividades-asignadas></app-modal-visualizar-actividades-asignadas>
